@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="response-generator.css">
+    <title>Teaching request response generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="controls" class="left">
+            <div id="customer" class="control-block">
+                <h3>O študentovi</h3>
+                <input v-model="name" placeholder="Meno">
+                <input type="checkbox" id="formal" v-model="formal">
+                <label for="formal">vykať</label>
+                <input type="checkbox" id="force_informal" v-model="force_informal">
+                <label for="force_informal">navrhnúť tykanie</label>
+            </div>
+
+            <div id="topic" class="control-block">
+                <h3>Téma</h3>
+                <input v-model="topic" placeholder="Jazyk">
+                <input type="checkbox" id="work" value="work" v-model="experience">
+                <label for="work">pracoval</label>
+                <input type="checkbox" id="taught" value="taught" v-model="experience">
+                <label for="taught">vyučoval</label>
+                <input type="checkbox" id="personal" value="personal" v-model="experience">
+                <label for="personal">osobné projekty</label>
+            </div>
+
+            <div id="questions" class="control-block">
+                <h3>Dodatočné otázky</h3>
+                
+                <div v-for='q in question_texts'>
+                    <input type="checkbox" v-bind:id="q.name" v-bind:value="q.name" v-model="questions">
+                    <label v-bind:for="q.name">{{q.shorthand}}</label>
+                </div>
+            </div>
+
+            <div id="price" class="control-block">
+                <h3>Cena</h3>
+                <input type="number" id="price_eur" value="18" v-model="price">
+                <label for="price_eur">EUR/h</label>
+            </div>
+
+            <div id="first-lesson" class="control-block">
+                <h3>Dátum</h3>
+                <input v-model="date" placeholder="Deň">
+                <input v-model="hour" placeholder="Hodina">
+                <br/>
+                <input id="double" type="checkbox" v-model="double">
+                <label for="double">Dvojhodinovka</label>
+            </div>
+        </div>
+
+        <div id="generated" class="right">
+            <textarea class="response" rows="30" cols="50">{{ response }}</textarea>
+        </div>
+    </div>
+
+    <script src="response-generator.js"></script>
+</body>
+
+</html>
